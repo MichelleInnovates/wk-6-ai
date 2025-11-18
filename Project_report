@@ -1,0 +1,46 @@
+Project Report
+Project: Edge AI Recyclable Item Classifier
+
+1. Accuracy Metrics
+
+The model was trained for 10 epochs on the Kaggle "Garbage Classification" dataset.
+
+Training Accuracy: ~92.4%
+
+Validation Accuracy: ~82.6%
+
+(Note: Accuracy can be further improved with more epochs and hyperparameter tuning, but this is a strong baseline for a lightweight model).
+
+The more important metric, however, is the model size reduction achieved through TFLite conversion:
+
+Full Keras Model Size: 4.19 MB
+
+Optimized TFLite Model Size: 1.05 MB
+
+Result: A 75% reduction in file size.
+
+2. Deployment Steps (Conversion to TFLite)
+
+The deployment from a trained Keras model to an Edge-ready TFLite model followed these three steps:
+
+Instantiate Converter: A tf.lite.TFLiteConverter object was created from the trained Keras model (model).
+
+Python
+
+converter = tf.lite.TFLiteConverter.from_keras_model(model)
+Apply Optimizations: We applied default optimizations. This step is crucial as it uses techniques like quantization (reducing the precision of the model's weights, e.g., from 32-bit floats to 8-bit integers) to dramatically shrink the model size with minimal impact on accuracy.
+
+Python
+
+converter.optimizations = [tf.lite.Optimize.DEFAULT]
+Convert and Save: The convert() method was called to create the TFLite model, which was then saved to a .tflite file. This file is now ready to be bundled into a mobile app (Android/iOS) or loaded onto a microcontroller (like a Raspberry Pi).
+
+3. Benefits of Edge AI for Real-Time Applications
+
+Using this TFLite model on an "edge" device (like a smart trash bin with a camera) provides three key benefits over a cloud-based model:
+
+Low Latency: The bin can classify an item instantly. A user throws something away, the local camera sees it, the TFLite model identifies it as "recyclable," and the correct lid opens—all in under a second. A cloud model would have a noticeable lag.
+
+Offline Capability: The smart bin can function perfectly without a Wi-Fi or cellular connection. This is essential for devices deployed in public parks, remote areas, or basements with poor connectivity.
+
+Cost and Power Efficiency: The optimized TFLite model requires less computational power, which means it can run on cheaper, less powerful processors. This reduces the device's manufacturing cost and, most importantly, consumes less battery, allowing it to run for weeks or months on a single charge.

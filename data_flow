@@ -1,0 +1,13 @@
+Step 1. Data Collection: Dozens of IoT Sensors are placed in the field, collecting data points every 15 minutes.
+
+Step 2. Data Transmission: The sensors use a low-power, long-range protocol (like LoRaWAN) to send their small data packets to a central IoT Gateway on the farm.
+
+Step 3. Data Ingestion: The Gateway securely uploads the aggregated data to a Cloud IoT Platform (e.g., AWS IoT Core or Azure IoT Hub), where it is stored in a time-series database.
+
+Step 4. AI Processing: The AI Model (XGBoost) runs on a cloud server. It automatically pulls the latest sensor data and combines it with weather forecast data.
+
+Step 5. Prediction & Action: The model generates a yield prediction and actionable insights (e.g., "Yield for Zone 4 projected to drop 15% unless Nitrogen is applied"). These insights are sent to:
+
+Farmer's Dashboard (App): Displays alerts and recommendations.
+
+Smart Actuators: Automatically triggers the farm's irrigation or "fertigation" (fertilizer) systems to apply the exact amount of water or nutrients needed, precisely where they are needed.

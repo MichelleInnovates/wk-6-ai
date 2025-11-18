@@ -1,0 +1,30 @@
+Task 2: AI-Driven IoT Concept (Smart Agriculture)
+Scenario: Smart Agriculture Yield Prediction
+
+1. Required IoT Sensors
+
+To build an accurate crop yield prediction model, we would deploy a sensor network across the fields to collect real-time, granular data:
+
+Soil Moisture Sensors: To measure the water content in the soil at different depths.
+
+Temperature & Humidity Sensors: To monitor ambient air and soil temperature, which affect plant growth rates and disease risk.
+
+NPK Sensors: To measure the concentration of key nutrients in the soil: Nitrogen, Phosphorus, and Kalium (Potassium).
+
+Soil pH Sensors: To measure the acidity or alkalinity of the soil, which affects nutrient availability.
+
+PAR (Photosynthetically Active Radiation) Sensors: To measure the amount of light available to the plants for photosynthesis, which is more accurate than a simple brightness sensor.
+
+2. Proposed AI Model
+
+Model: A Gradient Boosting Regressor (e.g., XGBoost) or a Random Forest Regressor.
+
+Justification: This is a classic regression problem using tabular data. The sensor readings (moisture, temp, NPK, etc.) are the features, and the "crop yield" (e.g., in bushels per acre) is the target value we want to predict.
+
+Why it works:
+
+Handles Diverse Data: These models are excellent at handling a mix of different numerical inputs.
+
+Non-Linearity: They can capture complex, non-linear relationships. For example, they can learn that crop yield is low with too little water, high with just enough water, and low again with too much water (root rot).
+
+Feature Importance: The model can tell the farmer why it's making a prediction (e.g., "The yield prediction is low primarily due to low Nitrogen levels and high soil moisture").
